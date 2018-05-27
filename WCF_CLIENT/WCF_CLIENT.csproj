@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C411721A-2A1E-4D51-B4B5-0C8D449C2F11}</ProjectGuid>
+    <ProjectGuid>{90C65B06-9B97-432F-B54F-86FF210F84D5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WCF_CLIENT_SERVER</RootNamespace>
-    <AssemblyName>WCF_CLIENT_SERVER</AssemblyName>
+    <RootNamespace>WCF_CLIENT</RootNamespace>
+    <AssemblyName>WCF_CLIENT</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WCF_INTERFACE_TEST\WCF_INTERFACE_TEST.csproj">
+      <Project>{ae740353-df54-458b-a6d5-d313ec047ff5}</Project>
+      <Name>WCF_INTERFACE_TEST</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
