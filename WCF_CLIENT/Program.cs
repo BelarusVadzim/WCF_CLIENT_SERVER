@@ -12,24 +12,30 @@ namespace WCF_CLIENT
     {
         static void Main(string[] args)
         {
-            Uri tcpUri = new Uri("http://localhost:1050/TestService");
-            EndpointAddress address = new EndpointAddress(tcpUri);
-            BasicHttpBinding binding = new BasicHttpBinding();
-            ChannelFactory<IMyObject> factory = new ChannelFactory<IMyObject>(binding, address);
-            IMyObject service = factory.CreateChannel();
-
-            String pressedKey = string.Empty;
-
-            while(pressedKey != "x")
+            Proxy.SendNotification("Are you ready?");
+            Console.ReadLine();
+        }
+        public static INotificationServices Proxy
+        {
+            get
             {
-                var key = Console.ReadKey();
-                try
-                {
-                    pressedKey = service.GetConsoleKey(key);
-                }
-                catch(Exception ex) { Console.WriteLine(ex.Message); continue; }
-                Console.WriteLine(pressedKey);
+                var ctx = new InstanceContext(new NotificationServiceCallBack());
+                return new DuplexChannelFactory<INotificationServices>(ctx, "WSDualHttpBinding_INotificationServices").CreateChannel();
             }
+        }
+    }
+
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    public class NotificationServiceCallBack : INotificationServiceCallBack
+    {
+        public void OnNotificationSend(string message)
+        {
+            Console.WriteLine("NotificationServiceCallBack" + message);
+        }
+
+        public void SendCallBack(string Message)
+        {
+            Console.WriteLine("Сработал тестовый метод: " + Message);
         }
     }
 }

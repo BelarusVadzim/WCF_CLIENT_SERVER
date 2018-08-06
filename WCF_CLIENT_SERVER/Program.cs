@@ -12,12 +12,12 @@ namespace WCF_SERVER
     {
         static void Main(string[] args)
         {
-            ServiceHost host = new ServiceHost(typeof(MyObject), new Uri("http://localhost:1050/TestService"));
-            host.AddServiceEndpoint(typeof(IMyObject), new BasicHttpBinding(), "");
-            host.Open();
-            Console.WriteLine("Сервер запущен");
+            var svcHost = new ServiceHost(typeof(NotificationService));
+            svcHost.Open();
+            Console.WriteLine("Available Endpoints :\n");
+            svcHost.Description.Endpoints.ToList().ForEach(endpoint => Console.WriteLine(endpoint.Address.ToString()));
             Console.ReadLine();
-            host.Close();
+            svcHost.Close();
         }
     }
 }

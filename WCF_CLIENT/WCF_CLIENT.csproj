@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WCF_INTERFACE_TEST\WCF_INTERFACE_TEST.csproj">
+    <ProjectReference Include="..\WCF_INTERFACE_TEST\WCF_INTERFACE.csproj">
       <Project>{ae740353-df54-458b-a6d5-d313ec047ff5}</Project>
-      <Name>WCF_INTERFACE_TEST</Name>
+      <Name>WCF_INTERFACE</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

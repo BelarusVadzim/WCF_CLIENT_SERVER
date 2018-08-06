@@ -8,13 +8,19 @@ using System.Threading.Tasks;
 
 namespace WCF_INTERFACE_TEST
 {
-    [ServiceContract] // Говорим WCF что это интерфейс для запросов сервису
-    public interface IMyObject
+    [ServiceContract(CallbackContract = typeof(INotificationServiceCallBack))]
+    public interface INotificationServices
     {
-        [OperationContract] // Делегируемый метод.
-        string GetCommandString(int i);
+        [OperationContract]
+        void SendNotification(string message);
+    }
 
-        [OperationContract] // Делегируемый метод.
-        string GetConsoleKey(ConsoleKeyInfo key);
+    public interface INotificationServiceCallBack
+    {
+        [OperationContract(IsOneWay = true)]
+        void OnNotificationSend(string message);
+
+        [OperationContract(IsOneWay = true)]
+        void SendCallBack(string Message);
     }
 }
